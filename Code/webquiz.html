@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .question-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .options {
+      margin: 15px 0;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .correct {
+      background-color: #dfffdf !important;
+      border: 2px solid #4CAF50 !important;
+    }
+
+    .wrong {
+      background-color: #ffe5e5 !important;
+      border: 2px solid #ff0000 !important;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .score {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    #question-nav {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .nav-btn {
+      margin: 5px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+    }
+
+    .nav-btn.active {
+      border: 2px solid #1E90FF;
+    }
+
+    .correct-btn {
+      background-color: #4CAF50 !important;
+      color: white !important;
+    }
+
+    .wrong-btn {
+      background-color: #e53935 !important;
+      color: white !important;
+    }
+
+    .nav-btn:hover {
+      background-color: #ddd;
+    }
+
+    #review-btn-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="score">Question <span id="current">1</span>/<span id="total">0</span></div>
+  <div id="quiz-container">Loading questions...</div>
+  <div id="question-nav"></div>
+  <div id="review-btn-container">
+    <button id="reviewBtn">Review All Questions</button>
+  </div>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Sound effects -->
+  <audio id="correctSound" src="correct.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="wrong.mp3" preload="auto"></audio>
+
+  <script>
+    let questions = [];
+    let currentQuestion = 0;
+    let questionStatus = [];
+    let wasWrongBefore = [];
+    let score = 0;
+    let wrongQuestionsData = "";
+    let inReviewMode = false;
+
+    const quizContainer = document.getElementById('quiz-container');
+    const currentSpan = document.getElementById('current');
+    const totalSpan = document.getElementById('total');
+    const questionNav = document.getElementById('question-nav');
+
+    const correctSound = document.getElementById('correctSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    async function loadQuestions() {
+      try {
+        const response = await fetch('questions.txt');
+        const text = await response.text();
+
+        const rawQuestions = text.trim().split(/\n(?=\d+\.)/);
+        questions = rawQuestions.map(block => {
+          const lines = block.trim().split('\n');
+          const questionText = lines[0].replace(/^\d+\.\s*/, '').trim();
+          const options = lines.slice(1, 5).map(line => line.slice(3).trim());
+          const correctLetter = lines[5].split(':')[1].trim().toUpperCase();
+          const correctIndex = ['A', 'B', 'C', 'D'].indexOf(correctLetter);
+          return {
+            question: questionText,
+            options,
+            correct: correctIndex
+          };
+        });
+
+        questionStatus = new Array(questions.length).fill(null);
+        wasWrongBefore = new Array(questions.length).fill(false);
+        totalSpan.textContent = questions.length;
+        renderNavButtons();
+        showQuestion();
+
+        document.getElementById('reviewBtn').onclick = toggleReview;
+      } catch (err) {
+        quizContainer.innerHTML = `<p style="color:red;">Failed to load questions. Make sure you're running this on a local server and 'questions.txt' exists.</p>`;
+      }
+    }
+
+    function renderNavButtons() {
+      questionNav.innerHTML = '';
+      questions.forEach((_, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = index + 1;
+        btn.classList.add('nav-btn');
+        btn.onclick = () => {
+          currentQuestion = index;
+          inReviewMode = false;
+          document.getElementById('reviewBtn').textContent = "Review All Questions";
+          showQuestion();
+        };
+        questionNav.appendChild(btn);
+      });
+    }
+
+    function updateNavHighlight() {
+      const buttons = document.querySelectorAll('.nav-btn');
+      buttons.forEach((btn, i) => {
+        btn.classList.remove('active', 'correct-btn', 'wrong-btn');
+
+        if (i === currentQuestion && !inReviewMode) {
+          btn.classList.add('active');
+        }
+
+        if (wasWrongBefore[i]) {
+          btn.classList.add('wrong-btn');
+        } else if (questionStatus[i] === true) {
+          btn.classList.add('correct-btn');
+        }
+      });
+    }
+
+    function showQuestion() {
+      currentSpan.textContent = currentQuestion + 1;
+      const q = questions[currentQuestion];
+      const optionLabels = ['A', 'B', 'C', 'D'];
+
+      const questionHTML = `
+        <div class="question-container">
+          <h3>Question ${currentQuestion + 1}: ${q.question}</h3>
+          <select class="options" id="options">
+            <option value="" disabled selected>Select an answer</option>
+            ${q.options.map((option, index) => 
+              `<option value="${index}">${optionLabels[index]}) ${option}</option>`
+            ).join('')}
+          </select>
+          <div class="feedback" id="feedback"></div>
+          <button onclick="checkAnswer()">Submit Answer</button>
+        </div>
+      `;
+
+      quizContainer.innerHTML = questionHTML;
+      updateNavHighlight();
+    }
+
+    function checkAnswer() {
+      const select = document.getElementById('options');
+      const feedback = document.getElementById('feedback');
+      const selectedIndex = parseInt(select.value);
+
+      if (selectedIndex === questions[currentQuestion].correct) {
+        select.classList.add('correct');
+        feedback.textContent = "Correct! Moving to next question...";
+        feedback.style.color = "green";
+
+        if (questionStatus[currentQuestion] === null) {
+          score++;
+        }
+
+        questionStatus[currentQuestion] = true;
+        updateNavHighlight();
+
+        correctSound.currentTime = 0;
+        correctSound.play();
+
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+
+        setTimeout(nextQuestion, 1500);
+      } else {
+        select.classList.add('wrong');
+        feedback.textContent = "Incorrect, please try again.";
+        feedback.style.color = "red";
+
+        if (questionStatus[currentQuestion] === null) {
+          questionStatus[currentQuestion] = false;
+
+          const q = questions[currentQuestion];
+          const optionLabels = ['A', 'B', 'C', 'D'];
+          const formatted = `${currentQuestion + 1}. ${q.question}\n` +
+            q.options.map((opt, idx) => `${optionLabels[idx]}) ${opt}`).join('\n') +
+            `\nCorrect Answer: ${optionLabels[q.correct]}\n\n`;
+
+          wrongQuestionsData += formatted;
+        }
+
+        wasWrongBefore[currentQuestion] = true;
+        updateNavHighlight();
+
+        wrongSound.currentTime = 0;
+        wrongSound.play();
+
+        setTimeout(() => {
+          select.classList.remove('wrong');
+          feedback.textContent = "";
+        }, 2000);
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function showFinalScore() {
+      quizContainer.innerHTML = `
+        <div class="question-container">
+          <h3>Quiz Completed!</h3>
+          <p>You've finished all questions!</p>
+          <h4>Your Score: ${score} / ${questions.length} (on first attempt)</h4>
+        </div>
+      `;
+
+      if (wrongQuestionsData) {
+        const blob = new Blob([wrongQuestionsData], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = 'wrong-questions.txt';
+        downloadLink.textContent = 'Download Incorrect Questions';
+        downloadLink.style.display = 'inline-block';
+        downloadLink.style.marginTop = '10px';
+        downloadLink.style.color = '#4CAF50';
+        quizContainer.appendChild(downloadLink);
+      }
+
+      updateNavHighlight();
+    }
+
+    function toggleReview() {
+      const btn = document.getElementById('reviewBtn');
+      inReviewMode = !inReviewMode;
+
+      if (inReviewMode) {
+        btn.textContent = 'Back to Quiz';
+        const optionLabels = ['A', 'B', 'C', 'D'];
+        quizContainer.innerHTML = '';
+
+        questions.forEach((q, index) => {
+          const optionsHTML = q.options.map((opt, idx) => {
+            const isCorrect = idx === q.correct;
+            return `<li style="
+              list-style: none;
+              padding: 8px;
+              margin-bottom: 4px;
+              background-color: ${isCorrect ? '#dfffdf' : '#fff'};
+              border: 1px solid ${isCorrect ? '#4CAF50' : '#ccc'};
+              border-radius: 5px;
+            ">
+              ${optionLabels[idx]}) ${opt}
+            </li>`;
+          }).join('');
+
+          const block = document.createElement('div');
+          block.className = 'question-container';
+          block.innerHTML = `
+            <h3>Question ${index + 1}: ${q.question}</h3>
+            <ul style="padding: 0; margin-top: 10px;">${optionsHTML}</ul>
+          `;
+          quizContainer.appendChild(block);
+        });
+
+      } else {
+        btn.textContent = 'Review All Questions';
+        showQuestion();
+      }
+
+      updateNavHighlight();
+    }
+
+    loadQuestions();
+  </script>
+</body>
+</html>
