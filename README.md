@@ -34,20 +34,20 @@ Each question block must include:
 To run **MCQMaster**:
 
 1. Clone or download this repository.
-2. Ensure your `questions.txt` file is in the **same directory** as `index.html`.
+2. Ensure your `questions.txt` file is in the **same directory** as `webquiz.html`.
 3. **Important:** You must use a **local server** to run the app due to browser restrictions on `fetch()` for local files.
 
 ### 👉 Use VS Code + Live Server (Recommended)
 
 - Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-- Right-click `index.html` → “Open with Live Server”
+- Right-click `webquiz.html` → “Open with Live Server”
 
 ---
 
 ## 🔧 Customization Tips
 
 - 🔊 Swap out `correct.mp3` and `wrong.mp3` with your own audio
-- 🎨 Update styles in the `<style>` section of `index.html`
+- 🎨 Update styles in the `<style>` section of `webquiz.html`
 - 📚 Easily replace `questions.txt` for new quizzes (no need to edit JavaScript)
 
 ---
