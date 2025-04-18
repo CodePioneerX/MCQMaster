@@ -1,0 +1,1176 @@
+1. What is the main goal of frequent itemset mining?
+A) To reduce database size
+B) To find relationships between database columns
+C) To find sets of items that frequently appear together in a dataset
+D) To clean transaction records
+Correct Answer: C
+
+2. Which of the following is an application of association rule mining in e-commerce?
+A) Optimizing shipping logistics
+B) Predicting customer churn
+C) Recommendation systems suggesting related products
+D) Managing inventory levels
+Correct Answer: C
+
+3. In the rule {diapers, milk} → {beer}, what does this imply in market basket analysis?
+A) Diapers and milk are frequently bought together
+B) Beer is always bought with diapers
+C) People who buy diapers and milk often also buy beer
+D) Milk and beer are never bought together
+Correct Answer: C
+
+4. Which metric measures the probability that Y is purchased given X was purchased?
+A) Support
+B) Confidence
+C) Lift
+D) Interest
+Correct Answer: B
+
+5. What does a lift value greater than 1 indicate?
+A) No association between X and Y
+B) Negative correlation
+C) X and Y occur together less often than expected
+D) A positive correlation between X and Y
+Correct Answer: D
+
+6. What is the main use of "Closed Frequent Itemsets"?
+A) Remove noise from data
+B) Avoid redundancy while keeping exact support
+C) Store only maximal patterns
+D) Reduce confidence values
+Correct Answer: B
+
+7. Which of the following is true about "Maximal Frequent Itemsets"?
+A) They store every possible frequent itemset
+B) They maintain exact support counts
+C) They eliminate supersets that are also frequent
+D) They increase memory usage
+Correct Answer: C
+
+8. In Apriori algorithm, why is the monotonicity property important?
+A) It increases transaction size
+B) It reduces the number of passes
+C) It helps in pruning candidate itemsets
+D) It improves recommendation accuracy
+Correct Answer: C
+
+9. What is the key disadvantage of high-confidence rules?
+A) They always have high support
+B) They may still be misleading
+C) They cannot be calculated easily
+D) They are not interpretable
+Correct Answer: B
+
+10. What is the main computational cost in frequent itemset mining?
+A) Memory allocation
+B) CPU cycles
+C) Disk I/O operations
+D) Database queries
+Correct Answer: C
+
+11. Which of the following is a technique to reduce disk I/O in mining?
+A) Adding more rules
+B) Repeatedly scanning data
+C) Hash-based counting
+D) Increasing itemset size
+Correct Answer: C
+
+12. Why is a hash table useful in frequent pair mining?
+A) It stores all possible pairs
+B) It is slower but more accurate
+C) It only stores occurring pairs
+D) It uses more memory than matrices
+Correct Answer: C
+
+13. In the Apriori algorithm, what does Pass 1 do?
+A) Count frequent pairs
+B) Prune redundant rules
+C) Count individual items
+D) Generate triples
+Correct Answer: C
+
+14. What causes a memory bottleneck in frequent itemset mining?
+A) Using hash tables
+B) Processing small datasets
+C) Storing too many itemset counts
+D) Low transaction volume
+Correct Answer: C
+
+15. What makes FP-Growth faster than Apriori?
+A) Uses fewer metrics
+B) Avoids candidate generation
+C) Uses k-tuples
+D) Processes fewer transactions
+Correct Answer: B
+
+16. Which of the following is used to compact the frequent itemset output?
+A) Support and lift
+B) Interest score
+C) Maximal and Closed Itemsets
+D) Flat file formatting
+Correct Answer: C
+
+17. What is a limitation of maximal frequent itemsets?
+A) Too many rules
+B) Loss of frequency details
+C) High memory usage
+D) Inefficient storage
+Correct Answer: B
+
+18. When is the triangular matrix approach preferred over hash tables?
+A) When most pairs do not occur
+B) When fewer than 1/3 of pairs exist
+C) When most item pairs are frequent
+D) When itemsets are hierarchical
+Correct Answer: C
+
+19. Which algorithm constructs a tree structure to store data compactly?
+A) Apriori
+B) FP-Growth
+C) Naïve Bayes
+D) Triangular Matrix
+Correct Answer: B
+
+20. What is the role of re-numbering frequent items in Apriori optimization?
+A) Reduce item support
+B) Track items over time
+C) Simplify storage using matrix
+D) Improve disk access
+Correct Answer: C
+
+21. Given 5 transactions, and the itemset {diapers, beer} appears in 3 of them, what is the support of {diapers, beer}?
+A) 0.2
+B) 0.4
+C) 0.6
+D) 0.75
+Correct Answer: C
+
+22. If the support of {diapers} is 4/5 and the support of {diapers, beer} is 3/5, what is the confidence of the rule {diapers} → {beer}?
+A) 0.60
+B) 0.75
+C) 0.80
+D) 1.00
+Correct Answer: B
+
+23. Given confidence({X} → {Y}) = 0.75 and support(Y) = 0.6, what is the lift of the rule?
+A) 0.45
+B) 0.80
+C) 1.25
+D) 1.75
+Correct Answer: C
+
+24. In a dataset of 8 baskets, {milk, beer} appears in 4 baskets and {milk, beer, coke} appears in 2 baskets. What is the confidence of the rule {milk, beer} → {coke}?
+A) 0.25
+B) 0.50
+C) 0.75
+D) 1.00
+Correct Answer: B
+
+25. From a basket dataset of 8 transactions, item “coke” appears in 5 of them. What is the probability of coke being in a random basket?
+A) 0.4
+B) 0.5
+C) 0.625
+D) 0.75
+Correct Answer: C
+
+26. If a rule has confidence = 0.5 and P(Y) = 0.625, what is the interest of the rule?
+A) 0.125
+B) –0.125
+C) 0.625
+D) –0.5
+Correct Answer: B
+
+27. What does a negative interest value indicate in association rules?
+A) Strong rule
+B) Positive correlation
+C) Items are independent
+D) Rule is less interesting than expected
+Correct Answer: D
+
+28. What is the main benefit of using approximate counting methods like Bloom filters?
+A) Reduce disk I/O
+B) Maintain perfect accuracy
+C) Store all item combinations
+D) Eliminate support pruning
+Correct Answer: A
+
+29. A triangular matrix for 100 items stores all pairs. How many entries are in the matrix?
+A) 10,000
+B) 4,950
+C) 5,000
+D) 9,900
+Correct Answer: B
+
+30. If each item pair in a matrix takes 4 bytes and there are 4,950 entries, how much memory is needed?
+A) 19.8 KB
+B) 495 KB
+C) 19.8 MB
+D) 4.95 KB
+Correct Answer: A
+
+31. What is the computational cost of a frequent itemset mining algorithm primarily measured by?
+A) Number of items in a transaction
+B) Number of CPU cycles
+C) Number of disk reads
+D) Length of association rules
+Correct Answer: C
+
+32. When is it better to use a sparse hash table instead of a triangular matrix?
+A) When itemsets are maximal
+B) When all pairs are frequent
+C) When fewer than 1/3 of pairs exist
+D) When confidence is low
+Correct Answer: C
+
+33. In the Apriori algorithm, if an itemset is not frequent, what can be said about its supersets?
+A) They are also frequent
+B) They must be checked manually
+C) They cannot be frequent
+D) They have higher confidence
+Correct Answer: C
+
+34. Which of the following is true for FP-Growth compared to Apriori?
+A) FP-Growth uses more memory
+B) Apriori uses a tree structure
+C) FP-Growth avoids generating candidate itemsets
+D) Apriori is faster for sparse datasets
+Correct Answer: C
+
+35. The main difference between closed and maximal frequent itemsets is:
+A) Closed itemsets are never maximal
+B) Maximal itemsets maintain exact support
+C) Closed itemsets retain frequency counts
+D) Maximal itemsets are used for classification
+Correct Answer: C
+
+36. A supermarket finds that customers who buy bread and butter often also buy jam. Which of the following is the best use of this insight?
+A) Reduce the price of bread
+B) Place jam near the exit
+C) Place jam near bread and butter to increase sales
+D) Stop selling jam separately
+Correct Answer: C
+
+37. In a hospital, if it is found that patients with high cholesterol and blood pressure often develop heart disease, what is the role of this association rule?
+A) Suggest a new medication
+B) Predict potential health risks
+C) Increase patient bills
+D) Reduce appointment times
+Correct Answer: B
+
+38. A financial institution notices a pattern where large international transfers followed by small local purchases are often fraudulent. This is an example of:
+A) Lift computation
+B) Market basket analysis
+C) Fraud detection using association rule mining
+D) Supervised learning
+Correct Answer: C
+
+39. A recommendation engine that says “Customers who bought a phone also bought a charger” is likely built using:
+A) K-means clustering
+B) Linear regression
+C) Association rule mining
+D) Naive Bayes classification
+Correct Answer: C
+
+40. A retail store reduces its product suggestions by storing only those itemsets that do not have frequent supersets. This technique uses:
+A) Closed itemsets
+B) Maximal frequent itemsets
+C) Lift-based filtering
+D) Confidence pruning
+Correct Answer: B
+
+41. A data scientist uses support and confidence to evaluate association rules but finds misleading results due to high frequency of some items. What metric should they use next?
+A) Accuracy
+B) Lift
+C) Interest
+D) Precision
+Correct Answer: C
+
+42. A transaction contains {milk, bread, beer}. If the system has learned the rule {milk, bread} → {beer}, this helps the system to:
+A) Increase inventory
+B) Predict that beer will be bought
+C) Recommend bread only
+D) Eliminate milk from shelves
+Correct Answer: B
+
+43. A retailer switches from storing all frequent itemsets to only storing those with no frequent supersets and no support loss. What method are they using now?
+A) FP-Growth
+B) Confidence optimization
+C) Closed frequent itemset mining
+D) Maximal pruning
+Correct Answer: C
+
+44. In a frequent itemset mining process, the algorithm is slowed down due to frequent memory swapping. This is caused by:
+A) Too few transactions
+B) Too many rules
+C) Memory bottleneck due to large candidate sets
+D) Lack of item pairs
+Correct Answer: C
+
+PDF 2
+45. An e-commerce system mines its data and only finds patterns with support ≥ 0.4 and confidence ≥ 0.7. What is the system doing?
+A) Testing clustering
+B) Optimizing basket size
+C) Filtering association rules using thresholds
+D) Training a regression model
+Correct Answer: C
+
+46. What is the goal of sampling a fixed proportion in a data stream?
+A) To store all data points
+B) To store only the last few elements
+C) To retain a constant fraction of incoming data
+D) To retain the smallest values
+Correct Answer: C
+
+47. If p = 0.2 in fixed-proportion sampling, how much of the data stream is kept?
+A) 20 elements
+B) 80% of the stream
+C) 100% of the stream
+D) 20% of the stream
+Correct Answer: D
+
+48. What algorithm is typically used for fixed-size sampling?
+A) Quick Sort
+B) Apriori
+C) Reservoir Sampling
+D) K-means
+Correct Answer: C
+
+49. In Reservoir Sampling, what does the probability k/i ensure?
+A) That newer items always replace older ones
+B) That all elements have an equal chance to be selected
+C) That only the first k elements are used
+D) That duplicates are removed
+Correct Answer: B
+
+50. A fixed-size sample is most useful when...
+A) We want the sample to grow over time
+B) Memory is unlimited
+C) We need constant-size storage for a changing stream
+D) We are filtering the data stream
+Correct Answer: C
+
+51. What is the goal of counting distinct elements in a stream?
+A) To sort all elements
+B) To find how many total items exist
+C) To find how many unique items exist
+D) To filter out rare items
+Correct Answer: C
+
+52. Why can’t we use traditional counting methods for distinct elements in a stream?
+A) They are too fast
+B) They overestimate results
+C) They use too much memory
+D) They don’t use hashing
+Correct Answer: C
+
+53. Which algorithm is used to estimate distinct elements using hashing?
+A) Apriori
+B) Reservoir Sampling
+C) Flajolet-Martin
+D) Decision Tree
+Correct Answer: C
+
+54. What is used in the Flajolet-Martin algorithm to estimate the count?
+A) Counting how many even numbers appear
+B) The average of values
+C) Number of trailing zeros in hashed values
+D) Binary sort of stream
+Correct Answer: C
+
+55. The number of distinct elements is approximated using:
+A) Square roots
+B) Arithmetic means
+C) Logarithmic estimators
+D) Median filtering
+Correct Answer: C
+
+56. What is the purpose of filtering in data streams?
+A) To keep all items
+B) To add noise to the data
+C) To remove unwanted or irrelevant data
+D) To count duplicates
+Correct Answer: C
+
+57. What is a Bloom Filter?
+A) A list of sorted unique elements
+B) A hash map that counts all values
+C) A space-efficient probabilistic structure for membership testing
+D) A method for deleting all duplicates
+Correct Answer: C
+
+58. What kind of error can Bloom filters produce?
+A) False negatives
+B) False positives
+C) Infinite loops
+D) Memory overflows
+Correct Answer: B
+
+59. What’s true about Bloom filters and URLs?
+A) They store all known bad URLs
+B) They ignore unknown sites
+C) They let browsers check if a URL is malicious
+D) They prevent all tracking cookies
+Correct Answer: C
+
+60. What are Counting Bloom Filters used for?
+A) Sampling fixed proportions
+B) Measuring memory usage
+C) Supporting deletions and frequency counting
+D) Tracking user sessions
+Correct Answer: C
+
+61. Which of the following is NOT part of mining data streams?
+A) Sampling
+B) Sorting
+C) Counting distinct elements
+D) Filtering
+Correct Answer: B
+
+62. Mining data streams is useful for all except:
+A) Fraud detection
+B) Real-time analytics
+C) Textbook publishing
+D) Cybersecurity
+Correct Answer: C
+
+63. What is a key challenge of data streams?
+A) They are easy to summarize
+B) They are finite and predictable
+C) They are infinite and non-stationary
+D) They use lots of disk space
+Correct Answer: C
+
+64. What is a tuple in a data stream?
+A) A fixed-length packet
+B) A structured data item
+C) A duplicate element
+D) A hashed key
+Correct Answer: B
+
+65. Why can’t we store the entire data stream?
+A) It’s illegal to store real-time data
+B) Streams are often encrypted
+C) Streams arrive slowly
+D) Streams are infinite and require summarization
+Correct Answer: D
+
+66. What is the role of the processor in a stream system?
+A) Collects and stores data
+B) Sorts and indexes data
+C) Processes streams in real time and answers queries
+D) Deletes duplicate tuples
+Correct Answer: C
+
+67. What are standing queries?
+A) Queries that run at the end of the day
+B) Predefined queries that run continuously on the stream
+C) User queries triggered manually
+D) Queries that only check storage
+Correct Answer: B
+
+68. What is the purpose of limited working storage?
+A) To store all stream elements
+B) To cache user credentials
+C) To hold recently processed data temporarily
+D) To store log files
+Correct Answer: C
+
+69. Archival storage is used to:
+A) Encrypt the data
+B) Perform real-time filtering
+C) Store historical data for batch processing
+D) Run standing queries
+Correct Answer: C
+
+70. What kind of output does the processor generate?
+A) Only log files
+B) Only full datasets
+C) Aggregated stats, alerts, or filtered summaries
+D) Graphical reports only
+Correct Answer: C
+
+71. What is the primary feature of stream processing?
+A) Scheduled once per day
+B) Requires full storage of the stream
+C) Operates continuously and in real time
+D) Works offline only
+Correct Answer: C
+
+72. Why is sampling from a stream useful?
+A) It helps delete duplicates
+B) It estimates global properties without storing everything
+C) It keeps the entire dataset
+D) It filters out trending queries
+Correct Answer: B
+
+73. What is a sliding window used for?
+A) Monitoring network traffic
+B) Tracking stats over the last k items
+C) Counting all historic events
+D) Deleting old queries
+Correct Answer: B
+
+74. Filtering a data stream means:
+A) Backing up all data
+B) Sorting elements in reverse
+C) Selecting elements with specific properties
+D) Encrypting incoming tuples
+Correct Answer: C
+
+75. What does counting distinct elements involve?
+A) Finding tuples with high values
+B) Estimating the number of unique items in the stream
+C) Tracking duplicates
+D) Sampling user credentials
+Correct Answer: B
+
+76. What is an example of mining query streams?
+A) Checking link redirects
+B) Identifying trending search queries
+C) Comparing images
+D) Resetting browser cache
+Correct Answer: B
+
+77. What is the purpose of mining click streams?
+A) Checking page load speed
+B) Viewing page styles
+C) Monitoring which pages are getting unusual clicks
+D) Counting site visitors
+Correct Answer: C
+
+78. How can social media news feeds be mined?
+A) By editing trending topics
+B) By analyzing hashtags and mentions
+C) By blocking spam
+D) By viewing private messages
+Correct Answer: B
+
+79. Which of the following is not an application of sensor networks?
+A) Monitoring temperature
+B) Detecting DoS attacks
+C) Tracking tweets
+D) Optimizing IP packet routing
+Correct Answer: C
+
+80. What do denial-of-service (DoS) detection systems monitor in streams?
+A) Sensor battery levels
+B) Sudden surges in traffic
+C) URL redirects
+D) Video playback rates
+Correct Answer: B
+
+81. What is the main reason for sampling data from a stream?
+A) To encrypt the stream
+B) To store all incoming data
+C) To extract insights without full storage
+D) To sort elements in real-time
+Correct Answer: C
+
+82. Which of the following are the two fundamental sampling problems in stream mining?
+A) Sorting & Sampling
+B) Sampling fixed proportion & fixed-size sample
+C) Clustering & Filtering
+D) Time series prediction & compression
+Correct Answer: B
+
+83. In reservoir sampling, what is the probability of selecting a new element at time step n for a sample size s?
+A) n/s
+B) s/n
+C) 1/s
+D) log(n)/s
+Correct Answer: B
+
+84. What’s true about reservoir sampling?
+A) Stores entire stream in memory
+B) Works only on sorted data
+C) Maintains fixed-size unbiased random sample
+D) Requires two passes over the data
+Correct Answer: C
+
+85. In reservoir sampling, what happens if a new element is selected?
+A) Discard entire sample
+B) Replace all current elements
+C) Replace a randomly chosen element from the sample
+D) Ignore the new element
+Correct Answer: C
+
+86. What is a major advantage of reservoir sampling?
+A) Needs multiple passes
+B) Works only on small data
+C) Uses limited memory and is unbiased
+D) Samples based on time
+Correct Answer: C
+
+87. What is the main problem with the naive fixed-proportion sampling method?
+A) Too accurate
+B) Overestimates all duplicates
+C) Underestimates duplicate frequency
+D) Uses hash buckets
+Correct Answer: C
+
+88. In naive sampling, why is the estimate of duplicates skewed?
+A) Duplicates are sampled too frequently
+B) Unique queries are discarded
+C) Duplicate queries are sampled non-linearly
+D) Time stamps are removed
+Correct Answer: C
+
+89. What is the solution to avoid bias in duplicate query estimation?
+A) Sample queries randomly
+B) Sample only duplicate queries
+C) Sample users and store all their queries
+D) Increase the sampling rate
+Correct Answer: C
+
+90. How are users assigned to buckets in the improved sampling solution?
+A) Alphabetical order
+B) Time-based hashing
+C) Hash function applied to user ID
+D) Based on activity
+Correct Answer: C
+
+91. Why does sampling users instead of queries reduce bias?
+A) It avoids hashing
+B) It stores duplicate queries from the same user
+C) It compresses the data
+D) It excludes bot queries
+Correct Answer: B
+
+92. What is the purpose of using hash-based sampling to generate a 30% sample?
+A) Speed up encryption
+B) Limit data flow
+C) Select items whose hash falls in the first 3 of 10 buckets
+D) Cluster elements by time
+Correct Answer: C
+
+93. In fixed-proportion sampling, what’s the probability of storing a tuple if using a naive 1-in-10 sampling strategy?
+A) 10%
+B) 1%
+C) 100%
+D) 50%
+Correct Answer: A
+
+94. Which of the following ensures uniform sampling across the stream in a memory-efficient way?
+A) Bloom filters
+B) Naive sampling
+C) Reservoir sampling
+D) Clustering
+Correct Answer: C
+
+95. In the context of user query sampling, what does hashing into buckets allow?
+A) Prevent user tracking
+B) Secure encryption
+C) Evenly distribute users for sampling
+D) Store all queries permanently
+Correct Answer: C
+
+96. Which of the following is NOT an advantage of reservoir sampling?
+A) Uniform sampling
+B) Needs full stream to be stored
+C) Memory efficiency
+D) Real-time operation
+Correct Answer: B
+
+97. Which real-world application benefits most from sampling entire user sessions?
+A) Random number generation
+B) Ad targeting
+C) Packet filtering
+D) Text summarization
+Correct Answer: B
+
+98. What is the correct formula for estimating the fraction of duplicates from sampled data in the naive approach?
+A) d / (x + d)
+B) x / d
+C) d / (10x + 19d)
+D) d / x²
+Correct Answer: C
+
+99. What is the main goal of counting distinct elements in a data stream?
+A) Find the average of all values
+B) Maintain a list of repeating elements
+C) Count how many unique elements have appeared
+D) Store all data for future use
+Correct Answer: C
+
+100. Why is the obvious approach of storing all seen elements not practical for large-scale streams?
+A) It’s inaccurate
+B) It needs O(1) space
+C) It’s too slow to compute
+D) It requires O(N) space, which is too large
+Correct Answer: D
+
+101. What is the key idea behind the Flajolet-Martin algorithm?
+A) Count all elements exactly
+B) Hash elements and track the number of leading zeros
+C) Hash elements and track the number of trailing zeros
+D) Store every duplicate element
+Correct Answer: C
+
+102. In the Flajolet-Martin algorithm, what does the variable r(a) represent?
+A) Rank of an element
+B) Index in a priority queue
+C) Number of trailing zeros in the hash of a
+D) Frequency of element a
+Correct Answer: C
+
+103. What is the final formula used to estimate the number of distinct elements?
+A) 2^a
+B) R^2
+C) 2^R
+D) log2(R)
+Correct Answer: C
+
+104. If the maximum number of trailing zeros observed is 3, what is the estimated count of distinct elements?
+A) 3
+B) 6
+C) 8
+D) 9
+Correct Answer: C
+
+105. What makes the Flajolet-Martin algorithm memory efficient?
+A) It stores all hash values
+B) It stores only the hash function
+C) It stores only the maximum r(a) value
+D) It uses parallel processing
+Correct Answer: C
+
+106. What is a real-world application of counting distinct elements in a stream?
+A) Sorting database entries
+B) Counting hashtags in social media
+C) Counting rows in Excel
+D) Building a histogram
+Correct Answer: B
+
+107. Why does the Flajolet-Martin method use trailing zeros in the hash values?
+A) They indicate the most frequent item
+B) Trailing zeros are randomly distributed
+C) More trailing zeros are less likely, indicating more unique elements
+D) They help in detecting duplicate elements
+Correct Answer: C
+
+108. In the example execution, which user had the highest number of trailing zeros?
+A) UserA
+B) UserB
+C) UserC
+D) UserD
+Correct Answer: B
+
+109. What is a Bloom Filter primarily used for?
+A) Sorting elements in a data stream
+B) Exact membership verification
+C) Efficient membership testing in large-scale data streams
+D) Replacing hash tables for all data structures
+Correct Answer: C
+
+110. What is guaranteed by a Bloom Filter?
+A) It can detect all members and non-members with 100% accuracy
+B) It has no false positives
+C) If an element is not in the set, it is definitely not in the set
+D) It can sort data alphabetically
+Correct Answer: C
+
+111. What is a key limitation of Bloom Filters?
+A) False negatives
+B) High memory usage
+C) False positives
+D) Slow insertion time
+Correct Answer: C
+
+112. What happens during the initialization of a Bloom Filter?
+A) All elements are added to a linked list
+B) Bit array is set to 1
+C) Bit array is initialized with all bits set to 0
+D) Sorting of incoming data occurs
+Correct Answer: C
+
+113. During the lookup phase, what indicates that an element is not in the set?
+A) If all bits are 0
+B) If any of the k bits is 0
+C) If all k bits are 1
+D) If the hash value is a prime number
+Correct Answer: B
+
+114. What is the time complexity for checking membership in a Bloom Filter?
+A) O(1)
+B) O(log n)
+C) O(k)
+D) O(n²)
+Correct Answer: C
+
+115. Which of the following is NOT a property of a Bloom Filter?
+A) Space efficient
+B) No false negatives
+C) Possible false positives
+D) Always accurate membership detection
+Correct Answer: D
+
+116. Which domain commonly uses Bloom Filters?
+A) Textbook publishing
+B) Image compression
+C) Network security
+D) Video streaming
+Correct Answer: C
+
+117. Why are Bloom Filters space efficient?
+A) They use binary search trees
+B) They store all data in hash tables
+C) They avoid storing actual elements and use a bit array
+D) They compress the entire dataset
+Correct Answer: C
+
+118. In the comparison table, what is true about false negatives in Bloom Filters?
+A) They never occur
+B) They always occur
+C) They occur occasionally
+D) They occur only during initialization
+Correct Answer: A
+
+119. What differentiates Bloom Filters from Hash Tables in terms of false positives?
+A) Both produce false positives
+B) Only hash tables produce false positives
+C) Only Bloom Filters can produce false positives
+D) Neither produces false positives
+Correct Answer: C
+
+120. What is a key reason Bloom Filters are faster than hash tables during insertions?
+A) Bloom Filters store data in trees
+B) Bloom Filters don't sort data
+C) Bloom Filters use O(k) time instead of O(1)
+D) Bloom Filters avoid memory allocation
+Correct Answer: C
+
+121. What is the primary goal of filtering a data stream? 
+A) Encrypt all incoming data
+B) Match stream elements against a predefined set
+C) Compress the data
+D) Store all elements permanently
+Correct Answer: B
+
+122. Which data structure is used in the first cut solution to efficiently filter data streams? 
+A) Stack
+B) Hash Table
+C) Bit Array
+D) Queue
+Correct Answer: C
+
+123. What happens if a stream element hashes to a bit set to 0? 
+A) It’s definitely in the set
+B) It might be in the set
+C) It’s definitely not in the set
+D) It must be rehashed
+Correct Answer: C
+
+124. Which of the following is NOT a property of the bit-array filtering method? 
+A) Memory-efficient
+B) Allows false negatives
+C) Fast lookup
+D) Some false positives possible
+Correct Answer: B
+
+125. What is a key limitation of using a hash table for very large sets in stream filtering? 
+A) It cannot be used with streams
+B) It introduces delays
+C) It consumes too much memory
+D) It causes data loss
+Correct Answer: C
+
+126. What is the expected size of the bit array to store 1 billion trusted email addresses? 
+A) 1 MB
+B) 1 GB
+C) 10 MB
+D) 1 TB
+Correct Answer: B
+
+127. In email filtering, what causes a false positive? 
+A) Trusted email marked as untrusted
+B) Untrusted email marked as trusted
+C) Both A and B
+D) None of the above
+Correct Answer: B
+
+128. Which of the following is true about Bloom Filters? 
+A) They have false negatives
+B) They store the actual elements
+C) They may have false positives
+D) Lookup time is O(n)
+Correct Answer: C
+
+129. What happens during the lookup phase in a Bloom filter? 
+A) Only one hash is checked
+B) All k hash values are computed
+C) The entire dataset is scanned
+D) New values are inserted
+Correct Answer: B
+
+130. What guarantees that a Bloom filter will never produce false negatives? 
+A) Bit array size
+B) The hashing scheme
+C) Lookup mechanism
+D) None of the above
+Correct Answer: C
+
+131. Which of the following best describes a false positive? 
+A) A system fails to detect a present element
+B) A system incorrectly detects a match
+C) A system returns no match when one exists
+D) A system finds a correct match
+Correct Answer: B
+
+132. In the context of spam filters, a false positive occurs when: 
+A) A spam email passes undetected
+B) A regular email is flagged as spam
+C) The filter misses all emails
+D) The filter returns no results
+Correct Answer: B
+
+133. In the darts-and-buckets model, what do darts represent? 
+A) Bits in the array
+B) Number of buckets
+C) Hash values of elements
+D) Memory locations
+Correct Answer: C
+
+134. What happens when too many elements are hashed into a small bit array? 
+A) False negatives increase
+B) False positives increase
+C) The array shrinks
+D) Hash functions fail
+Correct Answer: B
+
+135. In detecting malicious IPs, which of the following is a valid reason to use Bloom filters? 
+A) They can store full IP addresses
+B) They support compression
+C) They reduce memory usage and allow fast lookup
+D) They remove duplicates
+Correct Answer: C
+
+136. What is the purpose of checking multiple flags (buckets) when filtering emails? 
+A) To identify if the email is encrypted
+B) To detect spammy keywords
+C) To compress the message
+D) To hash the email ID
+Correct Answer: B
+
+137. If all k hash values point to 1 in the Bloom filter, what can we conclude? 
+A) Element is definitely not in the set
+B) Element may be in the set
+C) Element is definitely in the set
+D) The bit array is corrupted
+Correct Answer: B
+
+146. What does a high PageRank score suggest about a webpage?
+A) It loads quickly
+B) It has many internal links
+C) It is linked to by many other important pages
+D) It contains less content
+Correct Answer: C
+
+141. What graph metric helps identify highly connected regions in brain networks?
+A) Degree centrality
+B) Path length
+C) Modularity
+D) All of the above
+Correct Answer: D
+
+138. What does PageRank measure in a graph?
+A) Number of outgoing links from a node
+B) Influence of a node based on incoming links
+C) Total number of nodes in a graph
+D) Path length between nodes
+Correct Answer: B
+
+145. What is a connectome in neuroscience?
+A) A part of the brain responsible for movement
+B) A tool used to scan brain temperature
+C) A brain network of connected regions
+D) A brain implant
+Correct Answer: C
+
+140. What does a directed edge represent in a web graph?
+A) A hyperlink from one webpage to another
+B) A server connection
+C) A friendship
+D) A file transfer
+Correct Answer: A
+
+143. What is the primary goal of link analysis in graphs?
+A) Encrypt communication
+B) Examine node positions
+C) Discover relationships and structure via edges
+D) Delete unnecessary nodes
+Correct Answer: C
+
+144. In a communication network graph, what does an edge represent?
+A) A user preference
+B) A recommendation
+C) A communication link
+D) A subnet mask
+Correct Answer: C
+
+137. If all k hash values point to 1 in the Bloom filter, what can we conclude?
+A) Element is definitely not in the set
+B) Element may be in the set
+C) Element is definitely in the set
+D) The bit array is corrupted
+Correct Answer: B
+
+142. In the Seven Bridges of Königsberg problem, what condition must be met for an Eulerian circuit to exist?
+A) All vertices must have an odd degree
+B) There must be at least two bridges
+C) All vertices must have an even degree
+D) Graph must be disconnected
+Correct Answer: C
+
+139. What does a node represent in a citation network?
+A) A research institute
+B) A keyword
+C) A scientific journal or field
+D) A paragraph
+Correct Answer: C
+
+
+140. What was the limitation of early web directories like Yahoo Directory and DMOZ? 
+A) They were not curated
+B) They were hard to navigate
+C) They didn’t scale with web growth
+D) They relied on search algorithms
+Correct Answer: C
+
+141. What was the major improvement introduced by web search engines? 
+A) Manually indexed web pages
+B) Better website design
+C) Automated information retrieval
+D) More secure websites
+Correct Answer: C
+
+142. What challenge does the modern web pose for traditional information retrieval methods? 
+A) Too few websites
+B) Lack of user data
+C) Inability to curate content
+D) Difficulty in scaling
+Correct Answer: D
+
+143. What is the primary insight behind graph-based models like PageRank? 
+A) Websites should be ranked alphabetically
+B) All web pages are equally important
+C) Web structure can reveal importance and trust
+D) Manual curation is more effective
+Correct Answer: C
+
+144. In PageRank, what do the nodes in the web graph represent? 
+A) Hyperlinks
+B) URLs
+C) Webpages
+D) Users
+Correct Answer: C
+
+145. What is the key idea behind PageRank? 
+A) Rank pages based on keyword density
+B) Rank pages based on their link structure
+C) Rank pages by user ratings
+D) Rank pages alphabetically
+Correct Answer: B
+
+146. What does the HITS algorithm distinguish between? 
+A) Static and dynamic pages
+B) Fast and slow-loading sites
+C) Hubs and authorities
+D) Internal and external links
+Correct Answer: C
+
+147. In the flow model of PageRank, how is a page's importance passed on? 
+A) Equally among all pages on the internet
+B) Fully to one page
+C) Divided among all out-links
+D) Only passed to authorities
+Correct Answer: C
+
+148. What does the recursive nature of PageRank imply? 
+A) Importance is based on page size
+B) Importance must be calculated manually
+C) A page's rank depends on ranks of linking pages
+D) Ranking only works on small datasets
+Correct Answer: C
+
+149. Why do some PageRank "votes" count more than others? 
+A) Because they are counted twice
+B) They are weighted by content quality
+C) They come from important pages
+D) They are verified by users
+Correct Answer: C
+
+150. In PageRank, what happens if a page with high rank links to another page? 
+A) The target page receives a strong vote
+B) The target is ignored
+C) The rank is reduced
+D) The link is removed
+Correct Answer: A
+
+151. What problem arises when solving recursive PageRank equations without normalization? 
+A) No votes are counted
+B) Ranks become negative
+C) There’s no unique solution
+D) Too many loops form
+Correct Answer: C
+
+152. What constraint is applied to make PageRank scores unique? 
+A) All links must be removed
+B) Ranks must be equal
+C) Total rank must sum to 1
+D) Only 10 pages can be ranked
+Correct Answer: C
+
+153. In the matrix formulation of PageRank, what does the matrix M represent? 
+A) Keywords
+B) Ad revenue
+C) Transition probabilities (stochastic matrix)
+D) Page views
+Correct Answer: C
+
+154. What technique is used for solving PageRank equations on large graphs? 
+A) Bubble sort
+B) Recursion
+C) Power iteration
+D) Divide and conquer
+Correct Answer: C
+
+155. Why must columns in the PageRank matrix sum to 1? 
+A) To ensure SEO compliance
+B) To track number of users
+C) To preserve total rank (like a probability distribution)
+D) To match link titles
+Correct Answer: C
+
+156. What is the role of the rank vector in PageRank? 
+A) It stores URLs
+B) It holds rank scores for each page
+C) It manages cookies
+D) It lists keywords
+Correct Answer: B
+
+157. What does the equation r = M · r represent in PageRank? 
+A) File download formula
+B) Rank-based keyword matching
+C) Rank convergence through matrix multiplication
+D) Ad revenue generation
+Correct Answer: C
+
+158. How is a page's final rank computed in the matrix model? 
+A) Sum of shares from linking pages
+B) Total number of visits
+C) Alphabetical priority
+D) Number of outbound links
+Correct Answer: A
+
+159. In large-scale PageRank, why is matrix formulation preferred? 
+A) More readable
+B) Easier to convert to HTML
+C) Efficient for billions of pages
+D) It’s compatible with Python only
+Correct Answer: C
+
+
+
+
+
+
