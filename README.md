@@ -64,3 +64,6 @@ To run **MCQMaster**:
 ## 📜 License
 
 MIT License — free to use, modify, and share.
+
+![image](https://github.com/user-attachments/assets/f4d6fb92-bc31-44f7-8188-1f124c2e9cd9)
+
